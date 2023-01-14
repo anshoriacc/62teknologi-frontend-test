@@ -9,5 +9,21 @@
 html,
 body {
   margin: 0;
+  width: 100vw;
   overflow-x: hidden;
+  background-color: #fafafa;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #cccccc33;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: #cccccc33;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
 }
