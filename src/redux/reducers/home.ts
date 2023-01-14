@@ -16,9 +16,9 @@ const initialState: HomeState = {
     totalData: 0,
     totalPage: 1,
   },
+  categories: [],
   isLoadingHome: false,
   isLoadingCategories: false,
-  categories: [],
 };
 
 export default (state = initialState, { type, payload }: Action) => {
