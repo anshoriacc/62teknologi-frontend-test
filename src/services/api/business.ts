@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const { API_URL, ACCESS_KEY } = import.meta.env;
-const url = `${API_URL}/business`;
+const { VITE_API_URL, VITE_ACCESS_KEY } = import.meta.env;
+const url = `${VITE_API_URL}/business`;
 
 export interface Params {
   q?: String;
@@ -58,7 +58,7 @@ export function getData(params: Params) {
     url: `${url}/search`,
     params,
     headers: {
-      'x-access-key': ACCESS_KEY,
+      'x-access-key': VITE_ACCESS_KEY,
     },
   });
 }
@@ -68,7 +68,7 @@ export function getCategory() {
     method: 'GET',
     url: `${url}/categories`,
     headers: {
-      'x-access-key': ACCESS_KEY,
+      'x-access-key': VITE_ACCESS_KEY,
     },
   });
 }
@@ -79,7 +79,7 @@ export function addData(data: BodyAddData) {
     url: `${url}`,
     data,
     headers: {
-      'x-access-key': ACCESS_KEY,
+      'x-access-key': VITE_ACCESS_KEY,
     },
   });
 }
@@ -90,7 +90,7 @@ export function updateData(data: BodyUpdateData, id: String) {
     url: `${url}/${id}`,
     data,
     headers: {
-      'x-access-key': ACCESS_KEY,
+      'x-access-key': VITE_ACCESS_KEY,
     },
   });
 }
@@ -100,7 +100,7 @@ export function deleteData(id: String) {
     method: 'DELETE',
     url: `${url}/${id}`,
     headers: {
-      'x-access-key': ACCESS_KEY,
+      'x-access-key': VITE_ACCESS_KEY,
     },
   });
 }

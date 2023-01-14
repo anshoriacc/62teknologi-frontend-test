@@ -12,7 +12,7 @@ const initialState: HomeState = {
   data: [],
   meta: {
     page: 1,
-    limit: 20,
+    limit: 10,
     totalData: 0,
     totalPage: 1,
   },
@@ -34,13 +34,13 @@ export default (state = initialState, { type, payload }: Action) => {
         ...state,
         isLoadingHome: false,
         data: payload.data.data,
+        meta: payload.data.meta,
       };
 
     case GET_DATA_ERROR:
       return {
         ...state,
-        isLoadingHome: false,
-        data: [],
+        ...initialState,
       };
 
     case GET_CATEGORY_PENDING:

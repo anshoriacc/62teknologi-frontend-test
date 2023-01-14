@@ -9,7 +9,7 @@ export const GET_CATEGORY_PENDING = 'GET_CATEGORY_PENDING';
 export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS';
 export const GET_CATEGORY_ERROR = 'GET_CATEGORY_ERROR';
 
-export const getData = (params: any) => async (dispatch: Dispatch) => {
+export const getData = (params?: any) => async (dispatch: Dispatch) => {
   try {
     dispatch({
       type: GET_DATA_PENDING,
