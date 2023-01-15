@@ -8,7 +8,7 @@ function Footer() {
     <footer className="p-4 flex justify-between items-center text-slate-600">
       <p>
         © 2023 Achmad Anshori. <br />
-        Only for 62teknologi's technical test purpose.
+        Built for 62teknologi's technical test.
       </p>
       <div>
         <p className="text-sm text-center">Built with:</p>
