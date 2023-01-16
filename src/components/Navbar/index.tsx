@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import reactLogo from '../../assets/icons/react.svg';
-import addBusiness from '../../assets/icons/add-business.svg';
 
 function Navbar() {
   const location = useLocation();
