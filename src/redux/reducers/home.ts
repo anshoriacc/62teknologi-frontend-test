@@ -1,10 +1,8 @@
 import {
-  GET_DATA_ERROR,
-  GET_DATA_PENDING,
-  GET_DATA_SUCCESS,
-  GET_CATEGORY_ERROR,
-  GET_CATEGORY_PENDING,
-  GET_CATEGORY_SUCCESS,
+  GET_BUSINESS_ERROR,
+  GET_BUSINESS_PENDING,
+  GET_BUSINESS_SUCCESS,
+  RESET_DATA,
 } from '../actions';
 import { Action, HomeState } from '../types';
 
@@ -16,51 +14,40 @@ const initialState: HomeState = {
     totalData: 0,
     totalPage: 1,
   },
-  categories: [],
   isLoadingHome: false,
-  isLoadingCategories: false,
 };
 
 export default (state = initialState, { type, payload }: Action) => {
   switch (type) {
-    case GET_DATA_PENDING:
+    case GET_BUSINESS_PENDING:
       return {
         ...state,
         isLoadingHome: true,
       };
 
-    case GET_DATA_SUCCESS:
+    case GET_BUSINESS_SUCCESS:
       return {
         ...state,
         isLoadingHome: false,
-        data: payload.data.data,
-        meta: payload.data.meta,
+        data: payload.data.businesses,
+        meta: {
+          page: payload.params.offset / payload.params.limit + 1,
+          limit: payload.params.limit,
+          totalData: payload.data.total,
+          totalPage: payload.data.total / payload.params.limit,
+        },
       };
 
-    case GET_DATA_ERROR:
+    case GET_BUSINESS_ERROR:
       return {
         ...state,
         ...initialState,
       };
 
-    case GET_CATEGORY_PENDING:
+    case RESET_DATA:
       return {
         ...state,
-        isLoadingCategories: true,
-      };
-
-    case GET_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        isLoadingCategories: false,
-        categories: payload.data,
-      };
-
-    case GET_CATEGORY_ERROR:
-      return {
-        ...state,
-        isLoadingCategories: false,
-        categories: [],
+        ...initialState,
       };
 
     default:

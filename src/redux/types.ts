@@ -1,6 +1,7 @@
 // actions
 interface Payload {
   data?: any;
+  params?: any;
 }
 
 interface Params {
@@ -30,7 +31,5 @@ export interface HomeState {
     totalData: number;
     totalPage: number;
   };
-  categories: string[];
   isLoadingHome: boolean;
-  isLoadingCategories: boolean;
 }

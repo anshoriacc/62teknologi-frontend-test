@@ -1,106 +1,54 @@
 import axios from 'axios';
 
-const { VITE_API_URL, VITE_ACCESS_KEY } = import.meta.env;
-const url = `${VITE_API_URL}/business`;
+const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
+const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
 
-export interface Params {
-  q?: String;
-  category?: String;
-  location?: String;
-  open_now?: boolean;
-  transaction?: String;
-  price?: String;
-  page?: number;
-  limit?: number;
-  orderby?: String;
-  sort?: String;
+export interface SearchParams {
+  term?: string | null;
+  location?: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  price?: number | null;
+  categories?: string | null;
+  limit?: number | null;
+  offset?: number | null;
+  sort_by?: string | null;
 }
 
-export interface BodyAddData {
-  name: String;
-  images: any[];
-  transactions: String;
-  price: String;
-  phone: String;
-  address1: String;
-  address2: String;
-  address3: String;
-  latitude: String;
-  longitude: String;
-  city: String;
-  state: String;
-  country: String;
-  zip_code: String;
-  categories: String[];
-}
-
-export interface BodyUpdateData {
-  name?: String;
-  images?: any[];
-  transactions?: String;
-  price?: String;
-  phone?: String;
-  address1?: String;
-  address2?: String;
-  address3?: String;
-  latitude?: String;
-  longitude?: String;
-  city?: String;
-  state?: String;
-  country?: String;
-  zip_code?: String;
-  categories?: String[];
-}
-
-export function getData(params: Params) {
+export function getBusiness(params: SearchParams) {
   return axios({
     method: 'GET',
-    url: `${url}/search`,
+    url: `${corsAnywhere}${VITE_API_URL}/search`,
     params,
     headers: {
-      'x-access-key': VITE_ACCESS_KEY,
+      Authorization: `Bearer ${VITE_API_KEY}`,
+      accept: 'application/json',
     },
   });
 }
 
-export function getCategory() {
+export function getDetail(id: string) {
   return axios({
     method: 'GET',
-    url: `${url}/categories`,
+    url: `${corsAnywhere}${VITE_API_URL}/${id}`,
     headers: {
-      'x-access-key': VITE_ACCESS_KEY,
+      Authorization: `Bearer ${VITE_API_KEY}`,
+      accept: 'application/json',
     },
   });
 }
 
-export function addData(data: BodyAddData) {
+export function getReview(id: string) {
   return axios({
-    method: 'POST',
-    url: `${url}`,
-    data,
-    headers: {
-      'x-access-key': VITE_ACCESS_KEY,
+    method: 'GET',
+    url: `${corsAnywhere}${VITE_API_URL}/${id}/reviews`,
+    params: {
+      limit: 10,
+      sort_by: 'yelp_sort',
     },
-  });
-}
-
-export function updateData(data: BodyUpdateData, id: String) {
-  return axios({
-    method: 'POST',
-    url: `${url}/${id}`,
-    data,
     headers: {
-      'x-access-key': VITE_ACCESS_KEY,
-    },
-  });
-}
-
-export function deleteData(id: String) {
-  return axios({
-    method: 'DELETE',
-    url: `${url}/${id}`,
-    headers: {
-      'x-access-key': VITE_ACCESS_KEY,
+      Authorization: `Bearer ${VITE_API_KEY}`,
+      accept: 'application/json',
     },
   });
 }

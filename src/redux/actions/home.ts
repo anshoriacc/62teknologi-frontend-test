@@ -1,42 +1,34 @@
 import { Dispatch } from '../types';
 import { BUSINESS_API } from '../../services/api';
+import { SearchParams } from '../../services/api/business';
 
-export const GET_DATA_PENDING = 'GET_DATA_PENDING';
-export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS';
-export const GET_DATA_ERROR = 'GET_DATA_ERROR';
+export const GET_BUSINESS_PENDING = 'GET_BUSINESS_PENDING';
+export const GET_BUSINESS_SUCCESS = 'GET_BUSINESS_SUCCESS';
+export const GET_BUSINESS_ERROR = 'GET_BUSINESS_ERROR';
+export const RESET_DATA = 'RESET_DATA';
 
-export const GET_CATEGORY_PENDING = 'GET_CATEGORY_PENDING';
-export const GET_CATEGORY_SUCCESS = 'GET_CATEGORY_SUCCESS';
-export const GET_CATEGORY_ERROR = 'GET_CATEGORY_ERROR';
+export const getBusiness =
+  (params: SearchParams) => async (dispatch: Dispatch) => {
+    try {
+      dispatch({
+        type: GET_BUSINESS_PENDING,
+      });
 
-export const getData = (params?: any) => async (dispatch: Dispatch) => {
-  try {
-    dispatch({
-      type: GET_DATA_PENDING,
-    });
+      const response = await BUSINESS_API.getBusiness(params);
+      dispatch({
+        type: GET_BUSINESS_SUCCESS,
+        payload: { data: response.data, params },
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_BUSINESS_ERROR,
+        payload: { data: err?.response.data.error },
+      });
+    }
+  };
 
-    const response = await BUSINESS_API.getData(params);
-    dispatch({
-      type: GET_DATA_SUCCESS,
-      payload: { data: response.data },
-    });
-  } catch (err) {
-    dispatch({ type: GET_DATA_ERROR, payload: { data: err } });
-  }
-};
-
-export const getCategory = () => async (dispatch: Dispatch) => {
-  try {
-    dispatch({
-      type: GET_CATEGORY_PENDING,
-    });
-
-    const response = await BUSINESS_API.getCategory();
-    dispatch({
-      type: GET_CATEGORY_SUCCESS,
-      payload: { data: response.data },
-    });
-  } catch (err) {
-    dispatch({ type: GET_CATEGORY_ERROR, payload: { data: err } });
-  }
+export const resetData = () => (dispatch: Dispatch) => {
+  dispatch({
+    type: RESET_DATA,
+  });
 };
