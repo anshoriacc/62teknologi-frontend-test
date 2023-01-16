@@ -2,7 +2,11 @@ import React from 'react';
 
 import star from '../../assets/icons/star.svg';
 
-function Review({ data }: { data: any[] }) {
+function Review({
+  data,
+}: {
+  data: { user: any; rating: number; text: string };
+}) {
   return (
     <div className="p-2 flex flex-col gap-2 border bg-white border-slate-200 rounded-xl">
       <div className="flex gap-2 items-center">

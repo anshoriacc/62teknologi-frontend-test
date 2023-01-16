@@ -15,7 +15,27 @@ function Detail() {
   const { id } = useParams();
   const [isLoadingDetail, setIsLoadingDetail] = useState<boolean>(false);
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(false);
-  const [data, setData] = useState<{}>({});
+  const [data, setData] = useState<{
+    id?: string;
+    alias?: string;
+    name?: string;
+    photos?: Array<any>;
+    hours?: { is_open_now: boolean };
+    price?: string;
+    rating?: number;
+    review_count?: number;
+    categories?: Array<{ alias?: string; title?: string }>;
+    display_phone?: string;
+    url?: string;
+    transactions?: Array<any>;
+    coordinates?: {
+      latitude?: number;
+      longitude?: number;
+    };
+    location?: {
+      display_address?: string[];
+    };
+  }>({});
   const [reviews, setReviews] = useState<any[]>([]);
 
   const fetch = async (id) => {
@@ -110,14 +130,17 @@ function Detail() {
                     <span>{` (${data?.review_count ?? 0})`}</span>
                   </p>
                 </div>
-                <a href={data?.url ?? "#"} className="underline text-lg">
+                <a href={data?.url ?? '#'} className="underline text-lg">
                   web url
                 </a>
-                {data?.coordinates ? 
-                <a href={`https://maps.google.com/?q=${data?.coordinates?.latitude},${data?.coordinates?.longitude}`} className="underline text-lg">
-                  see on gmaps
-                </a>
-                :null}
+                {data?.coordinates ? (
+                  <a
+                    href={`https://maps.google.com/?q=${data?.coordinates?.latitude},${data?.coordinates?.longitude}`}
+                    className="underline text-lg"
+                  >
+                    see on gmaps
+                  </a>
+                ) : null}
               </div>
               <p className="italic">
                 <span className="font-semibold">Address: </span>
