@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 function Title({ title }: { title?: string }) {
   useEffect(() => {
     document.title = title
-      ? `Business List | ${title}`
+      ? `${title} | Business List`
       : `Business List – 62teknologi Assessment`;
   });
 
