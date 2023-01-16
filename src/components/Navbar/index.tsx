@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="h-[calc(40px+2rem)] p-4 flex justify-between">
       <Link to="/" className="flex gap-2 h-10">
-        <img src="/public/vite.svg" alt="vite-logo" />
+        <img src="/vite.svg" alt="vite-logo" />
         <img src={reactLogo} alt="react-logo" />
       </Link>
     </nav>
