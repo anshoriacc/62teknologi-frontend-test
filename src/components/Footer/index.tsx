@@ -14,7 +14,7 @@ function Footer() {
         <p className="text-sm text-center">Built with:</p>
         <div className="flex gap-2 h-10">
           <a href="https://vitejs.dev/" target="_blank">
-            <img className="h-10" src="/public/vite.svg" alt="vite-logo" />
+            <img className="h-10" src="/vite.svg" alt="vite-logo" />
           </a>
           <a href="https://reactjs.org/" target="_blank">
             <img className="h-10" src={reactLogo} alt="react-logo" />
